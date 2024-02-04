@@ -3,7 +3,7 @@ import {View, FlatList, Text, Pressable, StyleSheet} from 'react-native';
 import Goal from './Goal';
 
 
-const GoalsList = ({goals, deleteGoalHandler}) => {
+const GoalsList = ({goals, deleteGoal}) => {
     return ( <>
            <View style={styles.goalsContainer}>
           <FlatList
@@ -11,7 +11,7 @@ const GoalsList = ({goals, deleteGoalHandler}) => {
               renderItem={itemData => (
                <Goal 
                 goalData={itemData}
-                onDelete={() => deleteGoalHandler(itemData.index)}
+                onDelete={() => deleteGoal(itemData.index)}
                />
             )}
             keyExtractor={(item, index) => index.toString()} 

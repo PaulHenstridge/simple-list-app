@@ -8,6 +8,7 @@ export default function App() {
 
   const [modalIsVisible, setModalIsVisible] = useState(false)
   const [enteredText, setEnteredText] = useState('');
+  const [priority, setPriority] = useState('');
   const [goals, setGoals] = useState([]);
 
 
@@ -22,9 +23,12 @@ const closeModal = () => {
   const goalInputHandler = (text) => {
     setEnteredText(text)
   };
+  const priorityInputHandler = (pLevel) => {
+    setPriority(pLevel)
+  };
 
   const addGoalHandler = () => {
-    setGoals( prevState => [...prevState, enteredText])
+    setGoals( prevState => [...prevState, {enteredText, priority}])
     setEnteredText('')
     setModalIsVisible(false)
   };
@@ -35,16 +39,14 @@ const closeModal = () => {
   return (
     <View style={styles.appContainer}>
       <Button title='Add new Goal' color='red' onPress={openModal}/>
-      
-        { modalIsVisible && <GoalInputContainer 
-          goalInputHandler={goalInputHandler} 
-          addGoalHandler={addGoalHandler} 
-          enteredText={enteredText}
-        />}
-      
-     
-    <GoalsList goals={goals} deleteGoalHandler={deleteGoalHandler} />
-
+      { modalIsVisible && <GoalInputContainer 
+        goalInputHandler={goalInputHandler} 
+        priorityInputHandler={priorityInputHandler}
+        addGoalHandler={addGoalHandler} 
+        enteredText={enteredText}
+        priority={priority}
+      />}
+      <GoalsList goals={goals} deleteGoal={deleteGoalHandler} />
     </View>
   );
 };

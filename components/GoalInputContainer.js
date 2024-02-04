@@ -1,8 +1,9 @@
 import {View, TextInput,StyleSheet, Button, Modal} from 'react-native';
+import PrioritySelector from './PrioritySelector';
 
 
 
-const GoalInputContainer = ({goalInputHandler, addGoalHandler, enteredText}) => {
+const GoalInputContainer = ({goalInputHandler, priorityInputHandler, addGoalHandler, enteredText, priority}) => {
     return ( <>
     <Modal> 
           <View style={styles.inputContainer}>
@@ -12,9 +13,13 @@ const GoalInputContainer = ({goalInputHandler, addGoalHandler, enteredText}) => 
           onChangeText={goalInputHandler}
           value={enteredText}
         /> 
+        <PrioritySelector 
+          onPrioritySelect={priorityInputHandler}
+        />
         <Button
           title="Add Goal"
           onPress={addGoalHandler}
+          disabled={!priority}
         />
       </View>
     </Modal>
@@ -25,8 +30,8 @@ const styles = StyleSheet.create({
 
     inputContainer: {
       backgroundColor:"#cc55a1",
-      flexDirection:'row',
-      justifyContent: "space-between",
+      flexDirection:'column',
+      justifyContent: "center",
       alignItems:'center',
       flex:1,
       borderBottomWidth:1,
