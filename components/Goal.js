@@ -2,39 +2,41 @@ import {View, Text, Pressable, StyleSheet} from 'react-native';
 
 const Goal = ({goalData, onDelete}) => {
     return ( 
-        <Pressable onPress={onDelete}> 
-        <Text style={styles[goalData.item.priority]}>{ goalData.item.enteredText}</Text>
+        <Pressable
+        onPress={onDelete} 
+        style={styles[goalData.item.priority]}
+        > 
+        <Text >{ goalData.item.enteredText}</Text>
+        <Text >{ goalData.item.priority}</Text>
       </Pressable>
      );
 }
 
 const styles = StyleSheet.create({
-    goalText:{
-      padding:12,
-      borderRadius:12,
-      borderWidth:2,
-      borderColor:'blue',
-      backgroundColor:'yellow',
-      fontWeight:'bold',
-      margin:6
-    },
     LOW:{
         padding:12,
         backgroundColor:'yellow',
         fontWeight:'bold',
-        margin:6
+        fontSize:16,
+        margin:6,
+        borderWidth:3,
+        borderColor:'black',
       },
     MEDIUM:{
         padding:12,
         backgroundColor:'aqua',
         fontWeight:'bold',
-        margin:6
+        margin:6,
+        borderWidth:3,
+        borderColor:'black',
       },
     HIGH:{
         padding:12,
         backgroundColor:'red',
         fontWeight:'bold',
-        margin:6
+        margin:6,
+        borderWidth:3,
+        borderColor:'black',
       },
   })
 

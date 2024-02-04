@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
 import { StyleSheet, View, Button } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+
 import GoalInputContainer from './components/GoalInputContainer';
 import GoalsList from './components/GoalsList';
 
@@ -30,6 +32,7 @@ const closeModal = () => {
   const addGoalHandler = () => {
     setGoals( prevState => [...prevState, {enteredText, priority}])
     setEnteredText('')
+    setPriority('')
     setModalIsVisible(false)
   };
 
@@ -37,17 +40,20 @@ const closeModal = () => {
   setGoals(currentGoals => currentGoals.filter((_, index) => index !== idx));
   }
   return (
-    <View style={styles.appContainer}>
-      <Button title='Add new Goal' color='red' onPress={openModal}/>
-      { modalIsVisible && <GoalInputContainer 
-        goalInputHandler={goalInputHandler} 
-        priorityInputHandler={priorityInputHandler}
-        addGoalHandler={addGoalHandler} 
-        enteredText={enteredText}
-        priority={priority}
-      />}
-      <GoalsList goals={goals} deleteGoal={deleteGoalHandler} />
-    </View>
+    <>
+    <StatusBar style='light'/>
+      <View style={styles.appContainer}>
+        <Button title='Add new Goal' color='red' onPress={openModal}/>
+        { modalIsVisible && <GoalInputContainer 
+          goalInputHandler={goalInputHandler} 
+          priorityInputHandler={priorityInputHandler}
+          addGoal={addGoalHandler} 
+          enteredText={enteredText}
+          priority={priority}
+        />}
+        <GoalsList goals={goals} deleteGoal={deleteGoalHandler} />
+      </View>
+    </>
   );
 };
 

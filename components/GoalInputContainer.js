@@ -3,7 +3,7 @@ import PrioritySelector from './PrioritySelector';
 
 
 
-const GoalInputContainer = ({goalInputHandler, priorityInputHandler, addGoalHandler, enteredText, priority}) => {
+const GoalInputContainer = ({goalInputHandler, priorityInputHandler, addGoal, enteredText, priority}) => {
     return ( <>
     <Modal> 
           <View style={styles.inputContainer}>
@@ -18,7 +18,7 @@ const GoalInputContainer = ({goalInputHandler, priorityInputHandler, addGoalHand
         />
         <Button
           title="Add Goal"
-          onPress={addGoalHandler}
+          onPress={addGoal}
           disabled={!priority}
         />
       </View>
