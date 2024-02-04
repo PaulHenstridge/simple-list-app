@@ -29,7 +29,7 @@ const GoalInputContainer = ({goalInputHandler, priorityInputHandler, addGoalHand
 const styles = StyleSheet.create({
 
     inputContainer: {
-      backgroundColor:"#cc55a1",
+      backgroundColor:"#1d0559",
       flexDirection:'column',
       justifyContent: "center",
       alignItems:'center',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
       borderBottomColor:'black'
     },
     textInput: {
-        backgroundColor:'#a1ffdd',
+      backgroundColor:'#a1ffdd',
       borderWidth:1,
       borderColor:'black',
       width:'80%',

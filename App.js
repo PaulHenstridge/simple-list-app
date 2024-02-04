@@ -55,7 +55,7 @@ const closeModal = () => {
     appContainer: {
       padding:50,
       flex:1,
-      backgroundColor: '#a1ffdd'
+      backgroundColor: '#1d0559'
     }
   })
 

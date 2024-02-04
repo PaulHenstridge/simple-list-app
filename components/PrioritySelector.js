@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 
 const priorities = ['LOW','MEDIUM','HIGH']
-//     { label: 'LOW', value: 'low' },
-//     { label: 'MEDIUM', value: 'medium' },
-//     { label: 'HIGH', value: 'high' },
-//   ];
+
 
 const PrioritySelector = ({onPrioritySelect}) => {
 
@@ -22,7 +19,7 @@ const PrioritySelector = ({onPrioritySelect}) => {
             <Pressable 
                 key={priority}
                 onPress = {() => handlePress(priority)}
-                style={[styles.button, selectedPriority === priority && styles.selected]}
+                style={[styles[priority], selectedPriority === priority && styles.selected]}
             >
                 <Text>{priority}</Text>
             </Pressable>
@@ -45,8 +42,23 @@ const styles = StyleSheet.create({
     selected: {
       backgroundColor: '#ddd',
     },
-    text: {
-      // Text styling
+    LOW:{
+        backgroundColor:'yellow',
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#000',
+    },
+    MEDIUM:{
+        backgroundColor:'aqua',
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#000',
+    },
+    HIGH:{
+        backgroundColor:'red',
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#000',
     },
   });
 
