@@ -3,8 +3,12 @@ import { useState } from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
+import * as Location from 'expo-location';
+
 import GoalInputContainer from './components/GoalInputContainer';
 import GoalsList from './components/GoalsList';
+
+
 
 export default function App() {
 
@@ -29,8 +33,23 @@ const closeModal = () => {
     setPriority(pLevel)
   };
 
-  const addGoalHandler = () => {
-    setGoals( prevState => [...prevState, {enteredText, priority}])
+  const getLocation = async () => {
+    // Request permission
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      alert('Permission to access location was denied');
+      return;
+    }
+  
+    // Get current location
+    const location = await Location.getCurrentPositionAsync({})
+    console.log(location)
+    return location
+  };
+
+  const addGoalHandler = async () => {
+    const location = await getLocation()
+    setGoals( prevState => [...prevState, {enteredText, priority, location:[location.coords.longitude, location.coords.latitude]}])
     setEnteredText('')
     setPriority('')
     setModalIsVisible(false)

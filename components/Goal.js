@@ -3,11 +3,12 @@ import {View, Text, Pressable, StyleSheet} from 'react-native';
 const Goal = ({goalData, onDelete}) => {
     return ( 
         <Pressable
-        onPress={onDelete} 
-        style={styles[goalData.item.priority]}
+            onPress={onDelete} 
+            style={styles[goalData.item.priority]}
         > 
         <Text >{ goalData.item.enteredText}</Text>
         <Text >{ goalData.item.priority}</Text>
+        <Text >{ goalData.item.location[0]} - {goalData.item.location[1]}</Text>
       </Pressable>
      );
 }
