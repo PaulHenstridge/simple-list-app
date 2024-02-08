@@ -5,6 +5,8 @@ import { StatusBar } from 'expo-status-bar';
 
 import * as Location from 'expo-location';
 
+import axios from 'axios';
+
 import GoalInputContainer from './components/GoalInputContainer';
 import GoalsList from './components/GoalsList';
 
@@ -16,6 +18,7 @@ export default function App() {
   const [enteredText, setEnteredText] = useState('');
   const [priority, setPriority] = useState('');
   const [goals, setGoals] = useState([]);
+  const [myLocation, setMyLocation] = useState('')
 
 
 const openModal = () => {
@@ -35,23 +38,30 @@ const closeModal = () => {
 
   const getLocation = async () => {
     // Request permission
+
+    setMyLocation(location.data.name)
+  };
+
+  const addGoalHandler = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
       alert('Permission to access location was denied');
       return;
     }
   
-    // Get current location
-    const location = await Location.getCurrentPositionAsync({})
-    console.log(location)
-    return location
-  };
+    // Get coordinates
+    const {coords} = await Location.getCurrentPositionAsync({})
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${coords.latitude}&lon=${coords.longitude}&format=json`
+    console.log({url})
 
-  const addGoalHandler = async () => {
-    const location = await getLocation()
-    setGoals( prevState => [...prevState, {enteredText, priority, location:[location.coords.longitude, location.coords.latitude]}])
+    // Reverse geocode for location name
+    const response = await axios.get(url) 
+    console.log(response.data.name)
+    location = response.data.name
+    setGoals( prevState => [...prevState, {enteredText, priority, location}])
     setEnteredText('')
     setPriority('')
+    setMyLocation('')
     setModalIsVisible(false)
   };
 

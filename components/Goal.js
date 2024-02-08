@@ -1,6 +1,7 @@
 import {View, Text, Pressable, StyleSheet} from 'react-native';
 
 const Goal = ({goalData, onDelete}) => {
+
     return ( 
         <Pressable
             onPress={onDelete} 
@@ -8,7 +9,7 @@ const Goal = ({goalData, onDelete}) => {
         > 
         <Text >{ goalData.item.enteredText}</Text>
         <Text >{ goalData.item.priority}</Text>
-        <Text >{ goalData.item.location[0]} - {goalData.item.location[1]}</Text>
+        <Text >{goalData.item.location } - </Text>
       </Pressable>
      );
 }
