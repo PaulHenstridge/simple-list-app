@@ -1,5 +1,6 @@
 {
   "expo": {
+    "jsEngine": "jsc",
     "name": "firstProject",
     "slug": "firstProject",
     "version": "1.0.0",

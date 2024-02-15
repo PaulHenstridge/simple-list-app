@@ -58,7 +58,9 @@ const closeModal = () => {
     const response = await axios.get(url) 
     console.log(response.data.name)
     location = response.data.name
-    setGoals( prevState => [...prevState, {enteredText, priority, location}])
+
+    const currentTime = new Date().toLocaleString()
+    setGoals( prevState => [...prevState, {enteredText, priority, location, currentTime}])
     setEnteredText('')
     setPriority('')
     setMyLocation('')
@@ -80,7 +82,7 @@ const closeModal = () => {
           enteredText={enteredText}
           priority={priority}
         />}
-        <GoalsList goals={goals} deleteGoal={deleteGoalHandler} />
+        <GoalsList goals={goals} deleteGoal={deleteGoalHandler} setGoals={setGoals}/>
       </View>
     </>
   );

@@ -1,15 +1,16 @@
 import {View, Text, Pressable, StyleSheet} from 'react-native';
 
-const Goal = ({goalData, onDelete}) => {
+const Goal = ({goalData, onDelete, onLongPress}) => {
 
     return ( 
         <Pressable
-            onPress={onDelete} 
-            style={styles[goalData.item.priority]}
+            onLongPress={onLongPress} 
+            style={styles[goalData.priority]}
         > 
-        <Text >{ goalData.item.enteredText}</Text>
-        <Text >{ goalData.item.priority}</Text>
-        <Text >{goalData.item.location } - </Text>
+        <Text >{ goalData.enteredText}</Text>
+        <Text >{ goalData.priority}</Text>
+        <Text >{goalData.location } </Text>
+        <Text >{goalData.currentTime } </Text>
       </Pressable>
      );
 }
